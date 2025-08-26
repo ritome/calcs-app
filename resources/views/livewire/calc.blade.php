@@ -36,7 +36,7 @@ mount(function (string $a, string $op, string $b) {
     <h1>計算結果</h1>
 
     @if ($error)
-        <p>エラー: {{ $error }}</p>
+        <p>{{ $error }}</p>
     @else
         <p>{{ $a }} {{ $symbol }} {{ $b }} = {{ $result }}</p>
     @endif
