@@ -12,23 +12,37 @@ state([
 ]);
 
 mount(function (string $a, string $op, string $b) {
-    $this->a = (int)$a;
-    $this->b = (int)$b;
-    $this->op = strtolower($op); 
+    $this->a = (int) $a;
+    $this->b = (int) $b;
+    $this->op = strtolower($op);
 
     switch ($op) {
-        case 'addition':       $this->symbol = '+'; $val = $this->a + $this->b; break;
-        case 'subtraction':    $this->symbol = '-'; $val = $this->a - $this->b; break;
-        case 'multiplication': $this->symbol = 'x'; $val = $this->a * $this->b; break;
+        case 'addition':
+            $this->symbol = '+';
+            $val = $this->a + $this->b;
+            break;
+        case 'subtraction':
+            $this->symbol = '-';
+            $val = $this->a - $this->b;
+            break;
+        case 'multiplication':
+            $this->symbol = 'x';
+            $val = $this->a * $this->b;
+            break;
         case 'division':
             $this->symbol = '÷';
-            if ($this->b === 0) { $this->error = '0で割れません。'; return; }
-            $val = $this->a / $this->b; break;
+            if ($this->b === 0) {
+                $this->error = '0で割れません。';
+                return;
+            }
+            $val = $this->a / $this->b;
+            break;
         default:
-            $this->error = '無効な演算子です'; return;
+            $this->error = '無効な演算子です';
+            return;
     }
 
-    $this->result = (is_float($val) && fmod($val, 1.0) !== 0.0) ? $val : (int)$val;
+    $this->result = is_float($val) && fmod($val, 1.0) !== 0.0 ? $val : (int) $val;
 });
 ?>
 
